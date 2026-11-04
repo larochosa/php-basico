@@ -19,6 +19,32 @@ if ($horaAtual < 12) {
     $saudacao = "Boa noite";
 }
 
+$diaSemana = date("w");
+
+switch ($diaSemana) {
+    case 0:
+        $diaPorExtenso = "domingo";
+        break;
+    case 1:
+        $diaPorExtenso = "segunda-feira";
+        break;
+    case 2:
+        $diaPorExtenso = "terça-feira";
+        break;
+    case 3:
+        $diaPorExtenso = "quarta-feira";
+        break;
+    case 4:
+        $diaPorExtenso = "quinta-feira";
+        break;
+    case 5:
+        $diaPorExtenso = "sexta-feira";
+        break;
+    case 6:
+        $diaPorExtenso = "sábado";
+        break;
+}
+
 
 ?>
 
@@ -34,7 +60,27 @@ if ($horaAtual < 12) {
 
     <h2><?= $saudacao ?></h2>
 
+ <p>Hoje é <?= $diaPorExtenso ?>.</p>
+
    <p><?= $mensagem ?></p>
+
+   <h2>Relógio ao vivo</h2>
+
+<p id="relogio"></p>
+
+<script>
+    function atualizarRelogio() {
+        const agora = new Date();
+
+        const hora = agora.toLocaleTimeString("pt-BR");
+
+        document.getElementById("relogio").textContent = hora;
+    }
+
+    atualizarRelogio();
+
+    setInterval(atualizarRelogio, 1000);
+</script>
 
 </body>
 </html>
